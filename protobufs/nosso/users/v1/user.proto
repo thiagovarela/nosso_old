@@ -1,0 +1,14 @@
+syntax = "proto3";
+package nosso.users.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message User {
+    int64 id = 1;    
+    string email = 2;
+    string display_name = 3;
+    int32 domain_id = 4;
+    repeated string roles = 5;
+    google.protobuf.Timestamp created_at = 6;
+    google.protobuf.Timestamp updated_at = 7;
+}

@@ -1,0 +1,646 @@
+{
+  "db": "PostgreSQL",
+  "1540b58b0b0255080de6b5d1b7f6dc554617674950b510fe5891c851c451788b": {
+    "query": "\n                SELECT u.id as \"id!\",\n                    u.name as \"name?\",\n                    u.domain_id as \"domain_id!\",\n                    u.email::text as \"email!\",\n                    u.roles as \"roles?\",\n                    u.shared_secret as \"shared_secret?\",\n                    u.created_at as \"created_at!\",\n                    u.updated_at as \"updated_at!\" \n                  from (select * from auth.register_user( $1, $2 )) as u\n            ",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "id!",
+          "type_info": "Int8"
+        },
+        {
+          "ordinal": 1,
+          "name": "name?",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "domain_id!",
+          "type_info": "Int4"
+        },
+        {
+          "ordinal": 3,
+          "name": "email!",
+          "type_info": "Text"
+        },
+        {
+          "ordinal": 4,
+          "name": "roles?",
+          "type_info": "VarcharArray"
+        },
+        {
+          "ordinal": 5,
+          "name": "shared_secret?",
+          "type_info": "Uuid"
+        },
+        {
+          "ordinal": 6,
+          "name": "created_at!",
+          "type_info": "Timestamp"
+        },
+        {
+          "ordinal": 7,
+          "name": "updated_at!",
+          "type_info": "Timestamp"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Text",
+          "Int4"
+        ]
+      },
+      "nullable": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    }
+  },
+  "1c38df651bd77bc0906b99ee67d3ddfa3fb6c6f69d4495a4d5dc42e6f8442757": {
+    "query": "\n                SELECT d.id as \"id!\",\n                    d.name as \"name!\",\n                    d.allowed_host as \"allowed_host!\",\n                    d.created_at as \"created_at!\",\n                    d.updated_at as \"updated_at!\"\n                  from (select * from auth.domain_by_host( $1 )) as d\n            ",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "id!",
+          "type_info": "Int4"
+        },
+        {
+          "ordinal": 1,
+          "name": "name!",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "allowed_host!",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 3,
+          "name": "created_at!",
+          "type_info": "Timestamp"
+        },
+        {
+          "ordinal": 4,
+          "name": "updated_at!",
+          "type_info": "Timestamp"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Text"
+        ]
+      },
+      "nullable": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    }
+  },
+  "2ee7ce43913bbef0531fdcc9da962c36e312ec59df80e191e68c1fa54389e23b": {
+    "query": "\n                select * from auth.configure_current_user($1, $2, $3);\n            ",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "configure_current_user",
+          "type_info": "Void"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Int8",
+          "Int4",
+          "Text"
+        ]
+      },
+      "nullable": [
+        null
+      ]
+    }
+  },
+  "4223f0012153552d41604a8edd1fe290432aba89a2d31b935b951be730f34bab": {
+    "query": "\n                INSERT INTO app.domains (name, allowed_host) VALUES ($1, $2) RETURNING *\n            ",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "id",
+          "type_info": "Int4"
+        },
+        {
+          "ordinal": 1,
+          "name": "name",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "allowed_host",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 3,
+          "name": "created_at",
+          "type_info": "Timestamp"
+        },
+        {
+          "ordinal": 4,
+          "name": "updated_at",
+          "type_info": "Timestamp"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Varchar",
+          "Varchar"
+        ]
+      },
+      "nullable": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  },
+  "5a6cdd089e45ad5600a92e85c5a0672d2f7cc3628d9f6fc69fa2c97f2b48e19c": {
+    "query": "\n                SELECT u.id as \"id!\",\n                    u.name as \"name?\",\n                    u.domain_id as \"domain_id!\",\n                    u.email::text as \"email!\",\n                    u.roles as \"roles?\",\n                    u.shared_secret as \"shared_secret?\",\n                    u.created_at as \"created_at!\",\n                    u.updated_at as \"updated_at!\" \n                from app.users u where u.id = $1\n            ",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "id!",
+          "type_info": "Int8"
+        },
+        {
+          "ordinal": 1,
+          "name": "name?",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "domain_id!",
+          "type_info": "Int4"
+        },
+        {
+          "ordinal": 3,
+          "name": "email!",
+          "type_info": "Text"
+        },
+        {
+          "ordinal": 4,
+          "name": "roles?",
+          "type_info": "VarcharArray"
+        },
+        {
+          "ordinal": 5,
+          "name": "shared_secret?",
+          "type_info": "Uuid"
+        },
+        {
+          "ordinal": 6,
+          "name": "created_at!",
+          "type_info": "Timestamp"
+        },
+        {
+          "ordinal": 7,
+          "name": "updated_at!",
+          "type_info": "Timestamp"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Int8"
+        ]
+      },
+      "nullable": [
+        false,
+        true,
+        false,
+        null,
+        true,
+        false,
+        false,
+        false
+      ]
+    }
+  },
+  "6fb85c1004efcee212f25fc9d143c78728d6974efd29a8c4e4ef7525415140f0": {
+    "query": "select count(id) as \"count!\" from app.domains",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "count!",
+          "type_info": "Int8"
+        }
+      ],
+      "parameters": {
+        "Left": []
+      },
+      "nullable": [
+        null
+      ]
+    }
+  },
+  "711cfa92d84a67d980dc5566ee2a83bd25fec80d47ac9098bb0e42000c4c34f8": {
+    "query": "INSERT INTO workers.event ( name, content ) VALUES ( $1, $2 ) RETURNING id",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "id",
+          "type_info": "Int8"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Varchar",
+          "Bytea"
+        ]
+      },
+      "nullable": [
+        false
+      ]
+    }
+  },
+  "720120f589fb7ebfe27d0fb608b240c8fd2adc48d4a35e9fc232ad929a8a2915": {
+    "query": "select count(id) as \"count!\" from app.users",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "count!",
+          "type_info": "Int8"
+        }
+      ],
+      "parameters": {
+        "Left": []
+      },
+      "nullable": [
+        null
+      ]
+    }
+  },
+  "7d29e2319233b76e01c6b38934e4d593d281d81ff999b648d82a74222a50c8c9": {
+    "query": "\n               SELECT id,\n               name as \"name?\",\n               domain_id,\n               email::text as \"email!\",\n               roles, \n               shared_secret as \"shared_secret?\",\n               created_at,\n               updated_at\n               FROM app.users ORDER BY created_at ASC LIMIT $1 OFFSET $2  \n            ",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "id",
+          "type_info": "Int8"
+        },
+        {
+          "ordinal": 1,
+          "name": "name?",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "domain_id",
+          "type_info": "Int4"
+        },
+        {
+          "ordinal": 3,
+          "name": "email!",
+          "type_info": "Text"
+        },
+        {
+          "ordinal": 4,
+          "name": "roles",
+          "type_info": "VarcharArray"
+        },
+        {
+          "ordinal": 5,
+          "name": "shared_secret?",
+          "type_info": "Uuid"
+        },
+        {
+          "ordinal": 6,
+          "name": "created_at",
+          "type_info": "Timestamp"
+        },
+        {
+          "ordinal": 7,
+          "name": "updated_at",
+          "type_info": "Timestamp"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Int8",
+          "Int8"
+        ]
+      },
+      "nullable": [
+        false,
+        true,
+        false,
+        null,
+        true,
+        false,
+        false,
+        false
+      ]
+    }
+  },
+  "8a76c214cc764a7f841a89b5bb580163471d1776348e4b00aafedff3d861f644": {
+    "query": "\n                SELECT * FROM app.domains ORDER BY created_at ASC LIMIT $1 OFFSET $2  \n            ",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "id",
+          "type_info": "Int4"
+        },
+        {
+          "ordinal": 1,
+          "name": "name",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "allowed_host",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 3,
+          "name": "created_at",
+          "type_info": "Timestamp"
+        },
+        {
+          "ordinal": 4,
+          "name": "updated_at",
+          "type_info": "Timestamp"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Int8",
+          "Int8"
+        ]
+      },
+      "nullable": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  },
+  "a189d2aed74e28abd30428eb5d89f7b1d1994a6af7fc03bbeae1a010b4851fdd": {
+    "query": "\n                SELECT * FROM app.domains where id = ANY($1)\n            ",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "id",
+          "type_info": "Int4"
+        },
+        {
+          "ordinal": 1,
+          "name": "name",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "allowed_host",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 3,
+          "name": "created_at",
+          "type_info": "Timestamp"
+        },
+        {
+          "ordinal": 4,
+          "name": "updated_at",
+          "type_info": "Timestamp"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Int4Array"
+        ]
+      },
+      "nullable": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  },
+  "abfa7e903a38e004c049451db961585cfdacdac81c85781cdcbad5f80bddbd0f": {
+    "query": "\n                UPDATE app.domains SET\n                name = COALESCE($2, name),\n                allowed_host = COALESCE($3, allowed_host)\n                WHERE id = $1\n                RETURNING *\n            ",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "id",
+          "type_info": "Int4"
+        },
+        {
+          "ordinal": 1,
+          "name": "name",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "allowed_host",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 3,
+          "name": "created_at",
+          "type_info": "Timestamp"
+        },
+        {
+          "ordinal": 4,
+          "name": "updated_at",
+          "type_info": "Timestamp"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Int4",
+          "Varchar",
+          "Varchar"
+        ]
+      },
+      "nullable": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  },
+  "c0d7b825372494c7bfa48b90ec3cd47876f24958bb8e2f90f5f2a8ce230884aa": {
+    "query": "\n                SELECT d.id as \"id!\",\n                    d.name as \"name!\",\n                    d.allowed_host as \"allowed_host!\",\n                    d.created_at as \"created_at!\",\n                    d.updated_at as \"updated_at!\"\n                  from (select * from auth.domain_by_id_and_host( $1, $2 )) as d\n            ",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "id!",
+          "type_info": "Int4"
+        },
+        {
+          "ordinal": 1,
+          "name": "name!",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "allowed_host!",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 3,
+          "name": "created_at!",
+          "type_info": "Timestamp"
+        },
+        {
+          "ordinal": 4,
+          "name": "updated_at!",
+          "type_info": "Timestamp"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Int4",
+          "Text"
+        ]
+      },
+      "nullable": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    }
+  },
+  "c7cb8954a0efe65609b78845cb4380543e1e5149c2d123088b173de0c1bb1c22": {
+    "query": "\n                SELECT u.id as \"id!\",\n                    u.name as \"name?\",\n                    u.domain_id as \"domain_id!\",\n                    u.email::text as \"email!\",\n                    u.roles as \"roles?\",\n                    u.shared_secret as \"shared_secret?\",\n                    u.created_at as \"created_at!\",\n                    u.updated_at as \"updated_at!\" \n                  from (select * from auth.user_by_email( $1, $2 )) as u\n            ",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "id!",
+          "type_info": "Int8"
+        },
+        {
+          "ordinal": 1,
+          "name": "name?",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "domain_id!",
+          "type_info": "Int4"
+        },
+        {
+          "ordinal": 3,
+          "name": "email!",
+          "type_info": "Text"
+        },
+        {
+          "ordinal": 4,
+          "name": "roles?",
+          "type_info": "VarcharArray"
+        },
+        {
+          "ordinal": 5,
+          "name": "shared_secret?",
+          "type_info": "Uuid"
+        },
+        {
+          "ordinal": 6,
+          "name": "created_at!",
+          "type_info": "Timestamp"
+        },
+        {
+          "ordinal": 7,
+          "name": "updated_at!",
+          "type_info": "Timestamp"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Text",
+          "Int4"
+        ]
+      },
+      "nullable": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    }
+  },
+  "ee9db7e6ae8c6d9e90a23e67ca2ca55fd60234472c68eca783675bb901129f53": {
+    "query": "\n                SELECT * FROM app.domains where id = $1\n            ",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "id",
+          "type_info": "Int4"
+        },
+        {
+          "ordinal": 1,
+          "name": "name",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 2,
+          "name": "allowed_host",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 3,
+          "name": "created_at",
+          "type_info": "Timestamp"
+        },
+        {
+          "ordinal": 4,
+          "name": "updated_at",
+          "type_info": "Timestamp"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Int4"
+        ]
+      },
+      "nullable": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  }
+}

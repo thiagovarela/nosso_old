@@ -1,0 +1,13 @@
+syntax = "proto3";
+package nosso.util.v1;
+
+message PageRequest {
+  int64 page = 1;
+  int64 size = 2;
+}
+
+message PageInfo {
+  int64 total = 1;
+  int64 next_page = 2;
+  int64 prev_page = 3;
+}

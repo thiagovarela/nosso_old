@@ -1,0 +1,14 @@
+[package]
+name = "translations"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+unic-langid = {version = "0.9.0", features = ["macros"]}
+i18n-embed = { version = "0.13", features = ["fluent-system"]}
+rust-embed = "6"
+i18n-embed-fl = "0.6.0"
+lazy_static = "1.4"
+accept-language = "2.0"

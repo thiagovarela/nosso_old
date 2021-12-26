@@ -1,0 +1,12 @@
+syntax = "proto3";
+package nosso.domains.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message Domain {
+    int32 id = 1;
+    string name = 2;
+    string allowed_host = 3;
+    google.protobuf.Timestamp created_at = 4;
+    google.protobuf.Timestamp updated_at = 5;
+}

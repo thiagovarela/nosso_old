@@ -1,0 +1,16 @@
+node_modules/
+build/
+.vscode
+.idea
+
+.log
+target/
+
+
+
+# Svelte
+.DS_Store
+node_modules
+/build
+.svelte-kit
+/package

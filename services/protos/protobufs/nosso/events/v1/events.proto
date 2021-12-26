@@ -1,0 +1,14 @@
+syntax = "proto3";
+package nosso.events.v1;
+
+message RegisterUserEvent {
+  string email = 1;
+  string code = 2;
+  string locale = 3;
+}
+
+message GetCodeEvent {
+  string email = 1;
+  string code = 2;
+  string locale = 3;
+}

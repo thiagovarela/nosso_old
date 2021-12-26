@@ -1,0 +1,56 @@
+syntax = "proto3";
+package nosso.users.v1;
+
+import "nosso/users/v1/user.proto";
+import "nosso/util/v1/util.proto";
+
+service UsersService {
+  rpc RegisterUser (RegisterUserRequest) returns (RegisterUserResponse);
+  rpc GetCode (GetCodeRequest) returns (GetCodeResponse);
+  rpc GetAuthenticationToken (GetAuthenticationTokenRequest) returns (GetAuthenticationTokenResponse);
+  rpc GetUserProfile (GetUserProfileRequest) returns (GetUserProfileResponse);
+  rpc ListUsers (ListUsersRequest) returns (ListUsersResponse);
+}
+
+message GetCodeRequest {
+  string email = 1;
+}
+
+message GetCodeResponse {
+  bool sent = 1;
+}
+
+message GetAuthenticationTokenRequest {
+  string email = 1;
+  string token = 2;
+}
+
+message GetAuthenticationTokenResponse {
+  string jwt = 1;
+}
+
+message RegisterUserRequest {
+  string email = 1;
+}
+
+message RegisterUserResponse {
+  bool sent = 1;
+}
+
+message GetUserProfileRequest {
+}
+
+message GetUserProfileResponse {
+  string email = 1;
+  string display_name = 2;
+  repeated string roles = 3;
+}
+
+message ListUsersRequest {
+  nosso.util.v1.PageRequest page_request = 1;
+}
+
+message ListUsersResponse {
+  nosso.util.v1.PageInfo page_info = 1;
+  repeated User users = 2;
+}

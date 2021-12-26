@@ -1,0 +1,61 @@
+{
+  "db": "PostgreSQL",
+  "3fa67481e134added970f87841d458ad837118014a7faa5c4267c9ca6af5eacd": {
+    "query": "DELETE from workers.event_queue where event_id = $1",
+    "describe": {
+      "columns": [],
+      "parameters": {
+        "Left": [
+          "Int8"
+        ]
+      },
+      "nullable": []
+    }
+  },
+  "ed0ada30ca87416341c83ffb6ffef1fdaa2a10ea858ee01129037958f7e3800b": {
+    "query": "\n            SELECT ev.name, ev.content\n            FROM workers.event_queue evq\n            INNER JOIN workers.event ev on (ev.id = evq.event_id)\n            WHERE evq.event_id = $1\n            ",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "name",
+          "type_info": "Varchar"
+        },
+        {
+          "ordinal": 1,
+          "name": "content",
+          "type_info": "Bytea"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Int8"
+        ]
+      },
+      "nullable": [
+        false,
+        false
+      ]
+    }
+  },
+  "f0532eca57fa580eaaa7eba8c8b816d0970e6b11b9d9c2d94eadbdd653a34f8f": {
+    "query": "SELECT pg_try_advisory_xact_lock(event_id) as lock from workers.event_queue where event_id = $1",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "lock",
+          "type_info": "Bool"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Int8"
+        ]
+      },
+      "nullable": [
+        null
+      ]
+    }
+  }
+}

@@ -1,0 +1,22 @@
+[package]
+name = "workers"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+prost = "0.9"
+prost-types = "0.9"
+tracing = "0.1"
+tracing-subscriber = "0.2"
+tokio = { version = "1.0", features = ["macros", "rt-multi-thread"] }
+sqlx = { version = "0.5", features = [ "runtime-tokio-rustls", "uuid", "chrono", "postgres", "macros", "migrate", "offline" ] }
+unic-langid = {version = "0.9.0", features = ["macros"]}
+rusoto_core = {version = "0.47.0", default_features = false, features = ["rustls"]}
+rusoto_ses = {version = "0.47.0",  default_features = false, features = ["rustls"]}
+lettre = {version = "0.10.0-rc.3", default_features = false, features = ["builder", "rustls"]}
+base64 = "0.13"
+
+protos = { path = "../protos" }
+translations = { path = "../translations" }

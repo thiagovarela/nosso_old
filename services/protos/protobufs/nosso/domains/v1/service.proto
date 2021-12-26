@@ -1,0 +1,56 @@
+syntax = "proto3";
+package nosso.domains.v1;
+
+import "nosso/domains/v1/domain.proto";
+import "nosso/util/v1/util.proto";
+
+
+service DomainsService {
+  rpc AddDomain (AddDomainRequest) returns (AddDomainResponse);
+  rpc UpdateDomain (UpdateDomainRequest) returns (UpdateDomainResponse);
+  rpc ListDomains (ListDomainsRequest) returns (ListDomainsResponse);
+  rpc GetDomainById (GetDomainByIdRequest) returns (GetDomainByIdResponse);
+  rpc GetDomainByIds (GetDomainByIdsRequest) returns (GetDomainByIdsResponse);
+}
+
+message AddDomainRequest {
+  string name = 1;
+  string allowed_host = 2;
+}
+
+message AddDomainResponse {
+  Domain domain = 1;
+}
+
+message UpdateDomainRequest {
+  Domain domain = 1;
+}
+
+message UpdateDomainResponse {
+  Domain domain = 1;
+}
+
+message ListDomainsRequest {
+  nosso.util.v1.PageRequest page_request = 1;
+}
+
+message ListDomainsResponse {
+  nosso.util.v1.PageInfo page_info = 1;
+  repeated Domain domains = 2;
+}
+
+message GetDomainByIdRequest {
+  int32 id = 1;
+}
+
+message GetDomainByIdResponse {
+  Domain domain = 1;
+}
+
+message GetDomainByIdsRequest {
+  repeated int32 ids = 1;
+}
+
+message GetDomainByIdsResponse {
+  repeated Domain domains = 1;
+}

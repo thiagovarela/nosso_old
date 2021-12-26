@@ -1,0 +1,44 @@
+[package]
+name = "main"
+version = "0.0.1"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[bin]]
+name = "services"
+path = "src/main.rs"
+
+[dependencies]
+tonic = {version = "0.6", features = ["default", "tls"]}
+tonic-health = "0.5"
+prost = "0.9"
+prost-types = "0.9"
+tokio = { version = "1.0", features = ["macros", "rt-multi-thread", "tracing"] }
+sqlx = { version = "0.5", features = [ "runtime-tokio-rustls", "uuid", "chrono", "postgres", "macros", "migrate", "offline" ] }
+tower = "0.4"
+hyper = "0.14.14"
+pin-project = "1.0"
+tower-http = { version = "0.1.1", features = ["auth", "trace", "add-extension", "sensitive-headers"] }
+http = "0.2.5"
+http-body = "0.4"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"]}
+
+thiserror = "1.0"
+uuid = "0.8.2"
+serde = {version = "1.0", features = ["derive"] }
+chrono = "0.4.19"
+lazy_static = "1.4"
+unic-langid = {version = "0.9.0", features = ["macros"]}
+
+jsonwebtoken = "7"
+boringauth = "0.9"
+ring = "0.16.20"
+
+opentelemetry = "0.16"
+opentelemetry-jaeger = { version= "0.15", features = ["rt-tokio"]}
+tracing-opentelemetry = "0.16"
+
+protos = { path = "../protos" }
+

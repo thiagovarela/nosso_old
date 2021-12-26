@@ -1,0 +1,8 @@
+[workspace]
+
+members = [
+    "protos",
+    "translations",
+    "main",
+    "workers"
+]

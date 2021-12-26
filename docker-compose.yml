@@ -1,0 +1,34 @@
+version: '3'
+services:
+  postgres:
+    image: "postgres"
+    environment:
+      POSTGRES_USER: nosso
+      POSTGRES_PASSWORD: verysecret
+    ports:
+    - "5432:5432"
+    volumes:
+      - ./database:/docker_setup/database
+  services:
+    build:
+      context: ./services
+      dockerfile: Dockerfile
+    ports:
+      - "50051:50051"
+    environment:
+      RUST_LOG: "debug,h2=error"
+      DATABASE_URL: "postgres://nosso:verysecret@postgres/nosso_app_docker"
+    depends_on:
+      - postgres
+    volumes:
+      - $HOME/.aws/credentials:/root/.aws/credentials
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - services
+    environment:
+      SERVICES_URL: "services:50051"

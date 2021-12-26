@@ -1,0 +1,19 @@
+app = "nosso-postgres-dev"
+
+[experimental]
+private_network = true
+
+[build]
+image = "postgres:13.4"
+
+[mount]
+source      = "nosso_postgres_dev"
+destination = "/var/lib/postgresql/"
+
+[[services]]
+internal_port = 5432
+protocol      = "tcp"
+
+[[services.tcp_checks]]
+interval = 10000
+timeout  = 2000
