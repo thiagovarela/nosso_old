@@ -3,13 +3,20 @@ import { sequence } from '@sveltejs/kit/hooks';
 import type { DataSources, IRequest } from '$lib/types';
 import { UsersDataSource, DomainsDataSource } from '$lib/datasources';
 import { unsetAuthCookie } from '$lib/utils';
+import {createGrpcClient} from "$lib/datasources/make-client";
+
+// For now just one client.
+const address = process.env['SERVICES_URL'] ?? 'localhost:50051';
+const grpcClient = createGrpcClient(address);
 
 /**
  * List of Data Sources
  */
-const dataSources: DataSources = {
-	users: new UsersDataSource(),
-	domains: new DomainsDataSource()
+const loadDataSources = () => {
+	return {
+		users: new UsersDataSource(grpcClient),
+		domains: new DomainsDataSource(grpcClient)
+	}
 };
 
 /**
@@ -36,6 +43,7 @@ async function addSessionHeaders({ request, resolve }) {
 async function initializeDataSources({ request, resolve }) {
 	const requestContext = request.headers;
 
+	const dataSources = loadDataSources();
 	const initializers: any[] = [];
 	for (const dataSource of Object.values(dataSources)) {
 		if (dataSource.initialize) {
@@ -56,7 +64,6 @@ async function initializeDataSources({ request, resolve }) {
  */
 async function startUserSession({ request, resolve }: { request: IRequest; resolve: any }) {
 	if (!request.headers.cookie) {
-		console.log('No cookies to start session');
 		return await resolve(request);
 	}
 	if (!request.locals.user) {

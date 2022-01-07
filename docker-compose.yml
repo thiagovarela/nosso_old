@@ -4,7 +4,7 @@ services:
     image: "postgres"
     environment:
       POSTGRES_USER: nosso
-      POSTGRES_PASSWORD: verysecret
+      POSTGRES_PASSWORD: "very;secret"
     ports:
     - "5432:5432"
     volumes:
@@ -17,7 +17,7 @@ services:
       - "50051:50051"
     environment:
       RUST_LOG: "debug,h2=error"
-      DATABASE_URL: "postgres://nosso:verysecret@postgres/nosso_app_docker"
+      DATABASE_URL: "postgres://nosso:very;secret@postgres/nosso_app_docker"
     depends_on:
       - postgres
     volumes:

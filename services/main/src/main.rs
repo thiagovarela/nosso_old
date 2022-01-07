@@ -32,7 +32,7 @@ pub struct State {
 
 pub async fn database_connect(db_url: &str) -> Result<PgPool, error::ApplicationError> {
     Ok(PgPoolOptions::new()
-        .max_connections(5)
+        .max_connections(15)
         .after_connect(|conn| {
             Box::pin(async move {
                 conn.execute("SET application_name = 'nosso';").await?;

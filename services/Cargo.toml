@@ -6,3 +6,7 @@ members = [
     "main",
     "workers"
 ]
+
+[profile.release]
+debug = 1
+incremental = true

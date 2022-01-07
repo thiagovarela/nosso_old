@@ -6,10 +6,10 @@ export class DataSourceBase<T> {
 	name: string;
 	requestContext: Record<string, string>;
 
-	constructor() {
+	constructor(client: grpc.Client) {
 		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore
-		this.createChannel();
+		this.client = client
 	}
 
 	createChannel() {
@@ -29,10 +29,6 @@ export class DataSourceBase<T> {
 
 	initialize(context: Record<string, string>) {
 		this.requestContext = context;
-	}
-
-	info(): void {
-		console.log('DataSource', this.name, this.client.getChannel().getTarget());
 	}
 
 	rpcImplementation(method: any, requestData: any, callback): void {

@@ -14,3 +14,4 @@ node_modules
 /build
 .svelte-kit
 /package
+.pnpm-debug.log

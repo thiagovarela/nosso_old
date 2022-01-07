@@ -1,4 +1,4 @@
- <script lang="ts">
+<script lang="ts">
 	import { page } from '$app/stores';
 
 	export let pageSize = 100;
@@ -6,7 +6,7 @@
 
 	$: previousPage = pageInfo?.prevPage;
 	$: nextPage = pageInfo?.nextPage;
-	$: currentPage = previousPage ? (parseInt(pageInfo.prevPage) + 1) : 1;
+	$: currentPage = previousPage ? parseInt(pageInfo.prevPage) + 1 : 1;
 
 	$: totalPages = Math.ceil(pageInfo?.total / pageSize);
 	$: midPage = totalPages / 2;
@@ -18,11 +18,10 @@
 	$: prevPageUrl = url(previousPage);
 
 	function url(pageNumber: number) {
-		const query = new URLSearchParams($page.query)
-		query.set('page', pageNumber?.toString() ?? '0')
-		return `${$page.path}?${query.toString()}`
+		const query = new URLSearchParams($page.query);
+		query.set('page', pageNumber?.toString() ?? '0');
+		return `${$page.path}?${query.toString()}`;
 	}
-
 </script>
 
 <style lang="scss">
@@ -69,13 +68,11 @@
 				{currentPage}
 			</a>
 			{#if nextPage}
-				<a href="{nextPageUrl}">
-					Next
-				</a>
+				<a href="{nextPageUrl}"> Next </a>
 			{/if}
 		</nav>
 	</div>
 	<span>
-		 | {firstRecord}-{lastRecord} of {pageInfo.total}
+		| {firstRecord}-{lastRecord} of {pageInfo.total}
 	</span>
 </div>

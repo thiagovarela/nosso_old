@@ -1,6 +1,6 @@
-POSTGRES_PASSWORD="verysecret"
+POSTGRES_PASSWORD="very;secret"
 POSTGRES_USER="nosso"
-DATABASE_URL:="postgres://nosso:verysecret@localhost/nosso_app_docker"
+DATABASE_URL:="postgres://nosso:very;secret@localhost/nosso_app_docker"
 
 .PHONY: lint_protobufs
 lint_protobufs: 

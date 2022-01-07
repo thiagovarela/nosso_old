@@ -1,12 +1,12 @@
 pub mod nosso {
+    pub mod util {
+        pub mod v1 {
+            include!("nosso.util.v1.rs");
+        }
+    }
     pub mod users {
         pub mod v1 {
             include!("nosso.users.v1.rs");
-        }
-    }
-    pub mod domains {
-        pub mod v1 {
-            include!("nosso.domains.v1.rs");
         }
     }
     pub mod events {
@@ -14,9 +14,9 @@ pub mod nosso {
             include!("nosso.events.v1.rs");
         }
     }
-    pub mod util {
+    pub mod domains {
         pub mod v1 {
-            include!("nosso.util.v1.rs");
+            include!("nosso.domains.v1.rs");
         }
     }
 }
