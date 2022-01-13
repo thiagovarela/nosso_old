@@ -3,8 +3,8 @@
 
 	let isExemptRoute = false;
 
-	export async function load({ page, session }) {
-		if (exemptRoutes.has(page.path)) {
+	export async function load({ url, session }) {
+		if (exemptRoutes.has(url.pathname)) {
 			isExemptRoute = true;
 			return {};
 		}

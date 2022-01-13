@@ -1,9 +1,9 @@
 import type { Handle } from '@sveltejs/kit';
-import { sequence } from '@sveltejs/kit/hooks';
 import type { DataSources, IRequest } from '$lib/types';
 import { UsersDataSource, DomainsDataSource } from '$lib/datasources';
 import { unsetAuthCookie } from '$lib/utils';
 import {createGrpcClient} from "$lib/datasources/make-client";
+import { sequence } from '@sveltejs/kit/hooks';
 
 // For now just one client.
 const address = process.env['SERVICES_URL'] ?? 'localhost:50051';
@@ -75,7 +75,7 @@ async function startUserSession({ request, resolve }: { request: IRequest; resol
 		} catch (e) {
 			const response = await resolve(request);
 			const auth =
-				request.path.includes('dash/authenticate') || request.path.includes('dash/login');
+				request.url.pathname.includes('dash/authenticate') || request.url.pathname.includes('dash/login');
 			if (auth) {
 				return response;
 			}

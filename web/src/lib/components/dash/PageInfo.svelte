@@ -18,9 +18,9 @@
 	$: prevPageUrl = url(previousPage);
 
 	function url(pageNumber: number) {
-		const query = new URLSearchParams($page.query);
+		const query = new URLSearchParams($page.url.searchParams);
 		query.set('page', pageNumber?.toString() ?? '0');
-		return `${$page.path}?${query.toString()}`;
+		return `${$page.url.pathname}?${query.toString()}`;
 	}
 </script>
 

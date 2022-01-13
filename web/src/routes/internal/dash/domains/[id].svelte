@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
-	export async function load({ fetch, session, page }) {
-		const url = `/api/domains/${page.params.id}`;
-		const res = await fetch(url, { headers: session.headers });
+	export async function load({ fetch, session, params }) {
+		const domains_url = `/api/domains/${params.id}`;
+		const res = await fetch(domains_url, { headers: session.headers });
 
 		if (res.ok) {
 			const data = await res.json();
@@ -13,7 +13,7 @@
 		}
 		return {
 			status: res.status,
-			error: new Error(`Could not load ${url}`)
+			error: new Error(`Could not load ${domains_url}`)
 		};
 	}
 </script>
@@ -27,7 +27,7 @@
 	let name = domain.name;
 	let allowedHost = domain.allowedHost;
 	let error = '';
-	let origin = new URL(`https://${$page.host}`);
+	let origin = new URL(`https://${$page.url.hostname}`);
 	let isSameHost = origin.hostname === allowedHost;
 	async function submit() {
 		const response = await api

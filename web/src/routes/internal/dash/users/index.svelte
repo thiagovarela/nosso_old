@@ -1,6 +1,6 @@
 <script context="module">
-	export async function load({ fetch, session, page }) {
-		const url = `/api/users?${page.query.toString()}`;
+	export async function load({ fetch, session, url }) {
+		const users_url = `/api/users?${url.searchParams.toString()}`;
 		const res = await fetch(url, { headers: session.headers });
 
 		if (res.ok) {
@@ -26,7 +26,7 @@
 
 		return {
 			status: res.status,
-			error: new Error(`Could not load ${url}`)
+			error: new Error(`Could not load ${users_url}`)
 		};
 	}
 </script>
