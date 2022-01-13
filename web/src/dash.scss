@@ -1,6 +1,12 @@
 @import 'open-props/style';
 @import 'open-props/normalize';
 
+:where(html) {
+	--brand: var(--teal-8);
+	background-color: var(--gray-0);
+	font-family: var(--font-sans);
+}
+
 @custom-media --motionOK (prefers-reduced-motion: no-preference);
 @custom-media --motionNotOK (prefers-reduced-motion: reduce);
 @custom-media --opacityOK (prefers-reduced-transparency: no-preference);
@@ -45,16 +51,7 @@
 @custom-media --xxl-n-above (min-width: 1920px);
 @custom-media --xxl-n-below (max-width: 1920px);
 
-body {
-	background-color: var(--gray-0);
-	font-family: var(--font-sans);
-}
 
-form {
-	input {
-		min-height: var(--size-8);
-	}
-}
 
 .centered-page {
 	display: flex;
@@ -70,9 +67,12 @@ form {
 form > button {
 	color: white;
 	min-height: var(--size-8);
-	background-color: var(--teal-8);
+	background-color: var(--teal-8);	
+    font-weight: var(--font-weight-7);
 	&:hover {
-		background-color: var(--teal-9);
+		background-color: transparent;
+		color: var(--teal-8);
+		border: 2px solid var(--teal-8);
 	}
 }
 
@@ -124,7 +124,7 @@ table th {
 	text-transform: uppercase;
 }
 
-@media (---n-below) {
+@media (--md-n-below) {
 	table {
 		border: 0;
 	}
@@ -172,3 +172,4 @@ table th {
 		border-bottom: 0;
 	}
 }
+

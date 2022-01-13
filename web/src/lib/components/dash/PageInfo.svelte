@@ -64,9 +64,9 @@
 			{#if previousPage}
 				<a href="{prevPageUrl}">Previous</a>
 			{/if}
-			<a>
+			<span>
 				{currentPage}
-			</a>
+			</span>
 			{#if nextPage}
 				<a href="{nextPageUrl}"> Next </a>
 			{/if}

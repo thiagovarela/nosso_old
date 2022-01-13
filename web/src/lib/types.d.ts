@@ -20,3 +20,9 @@ declare interface IPaginatedResponse<T> {
 	results?: T[];
 	pageInfo: nosso.util.v1.IPageInfo;
 }
+
+
+declare interface User {
+	name: string;
+	roles: string[];
+}

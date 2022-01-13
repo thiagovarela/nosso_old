@@ -45,8 +45,8 @@
 	}
 </script>
 
-<form on:submit|preventDefault="{submit}">
-	<div>
+<form on:submit|preventDefault="{submit}" class="default-form">
+	
 		<label>
 			<span> Name </span>
 			<input type="text" bind:value="{name}" />
@@ -64,5 +64,5 @@
 		<div>
 			<button type="submit"> Save </button>
 		</div>
-	</div>
+	
 </form>

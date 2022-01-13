@@ -16,10 +16,13 @@
 	}
 </script>
 
-<script>
+<script lang='ts'>
+	import type { User } from '$lib/types';
+
 	import '../../../dash.scss';
+	
 	let sidebarOpen = false;
-	export let user;
+	export let user: User;
 
 	let isManager = user && (user.roles.includes('manager') || user.roles.includes('superuser'));
 	let isSuper = user && user.roles.includes('superuser');
@@ -90,6 +93,10 @@
 		margin: 0;
 		padding: 0;
 	}
+	.sidebar-container {
+		display: flex;
+		flex-direction: row;
+	}
 	aside {
 		z-index: var(--layer-3);
 		width: var(--size-fluid-9);
@@ -142,24 +149,26 @@
 			</header>
 			<div>
 				{#if sidebarOpen}
-					<aside>
-						<div class="sidebar-inner">
-							<ul>
-								{#each links as link}
-									<li>
-										<a on:click="{() => toggle()}" href="{link.href}">
-											<span>{link.name}</span>
-										</a>
-									</li>
-								{/each}
-							</ul>
-						</div>
-					</aside>
-					<div
-						style="opacity: 30%; filter: blur(1px)"
-						on:click="{() => (sidebarOpen = !sidebarOpen)}">
-						<div class="inner">
-							<slot />
+					<div class="sidebar-container">
+						<aside>
+							<div class="sidebar-inner">
+								<ul>
+									{#each links as link}
+										<li>
+											<a on:click="{() => toggle()}" href="{link.href}">
+												<span>{link.name}</span>
+											</a>
+										</li>
+									{/each}
+								</ul>
+							</div>
+						</aside>
+						<div
+							style="opacity: 30%; filter: blur(1px)"
+							on:click="{() => (sidebarOpen = !sidebarOpen)}">
+							<div class="inner">
+								<slot />
+							</div>
 						</div>
 					</div>
 				{:else}
