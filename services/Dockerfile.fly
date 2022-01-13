@@ -1,5 +1,5 @@
 FROM lukemathwalker/cargo-chef:latest-rust-slim-bullseye AS chef
-WORKDIR app
+WORKDIR /app
 RUN rustup component add rustfmt
 
 FROM chef AS planner

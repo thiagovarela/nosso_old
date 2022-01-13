@@ -27,3 +27,4 @@ fantastic role in everyday developer experience.
 
 **Postgres** is more than a data store, I decided to use RLS and its pub/sub system, mainly to have some AuthZ and 
 distributed workers without having to increase complexity of this pet project. I think it's good enough.  
+

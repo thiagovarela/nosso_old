@@ -7,7 +7,7 @@
 	}
 </script>
 
-<script>
+<script lang='ts'>
 	import { api } from '$lib/api';
 	import { goto } from '$app/navigation';
 

@@ -96,7 +96,7 @@ impl<T> RequestExtensions for tonic::Request<T> {
             _ => input.size,
         };
 
-        /// Postgres offset starts with 0
+        // Postgres offset starts with 0
         let offset = match input.page {
             1 => 0,
             _ => input.page * size,
